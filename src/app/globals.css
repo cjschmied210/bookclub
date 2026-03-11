@@ -1,12 +1,31 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cozy Nook Palette */
+  --color-cream: #f5f0e6;
+  --color-sage: #889c8a;
+  --color-charcoal: #2b2b2b;
+  --color-surface-muted: #eaddcb;
+  --color-text-muted: #666666;
+
+  /* Typography */
+  --font-serif: var(--font-lora), "Georgia", serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", sans-serif;
+
+  /* Sizing */
+  --measure: 66ch; /* Optimal reading length */
+  --leading: 1.6;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-charcoal);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Muted Dark Atmosphere */
+    --color-cream: #1c1c1a;
+    --color-sage: #5b6b5c;
+    --color-charcoal: #e4e2de;
+    --color-surface-muted: #252523;
+    --color-text-muted: #a0a0a0;
   }
 }
 
@@ -14,14 +33,26 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif);
+  line-height: var(--leading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle Paper Texture Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 * {
@@ -33,10 +64,80 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  opacity: 0.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+.container {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.bookclub-header {
+  font-family: var(--font-sans);
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 1px solid var(--color-surface-muted);
+  margin-bottom: 4rem;
+}
+
+.bookclub-nav {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-sage);
+  text-decoration: none;
+}
+
+/* Reflection specific styling */
+.reflection-date {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.reflection-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.reflection-author {
+  font-family: var(--font-sans);
+  color: var(--color-sage);
+  font-size: 1rem;
+  margin-bottom: 3rem;
+  display: block;
 }

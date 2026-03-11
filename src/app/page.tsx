@@ -1,66 +1,85 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import Link from "next/link";
 import styles from "./page.module.css";
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
+interface BookCover {
+  isbn: string;
+  bookTitle: string;
+  bookAuthor: string;
+  bookCoverUrl: string;
+}
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+  const [books, setBooks] = useState<BookCover[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const q = query(collection(db, "books"), orderBy("addedAt", "desc"));
+        const snapshot = await getDocs(q);
+        const fetched = snapshot.docs.map(doc => ({
+          isbn: doc.id,
+          bookTitle: doc.data().title,
+          bookAuthor: doc.data().author,
+          bookCoverUrl: doc.data().coverUrl,
+        })) as BookCover[];
+        setBooks(fetched);
+      } catch (error) {
+        console.error("Error fetching library:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+      <div className="container">
+        <Header />
+      </div>
+        <main className={styles.archiveList}>
+          <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-text-muted)', textAlign: 'center', paddingTop: '4rem' }}>
+            Loading Library...
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </main>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="container">
+        <Header />
+      </div>
+      
+      <main className={styles.archiveList}>
+        {books.length === 0 ? (
+          <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-text-muted)', textAlign: 'center' }}>The library is empty. Awaiting the first reflection...</p>
+        ) : (
+          <div className={styles.bookGrid}>
+            {books.map((book) => (
+              <Link href={`/book/${book.isbn}`} key={book.isbn} className={styles.bookCoverLink}>
+                {book.bookCoverUrl ? (
+                  <img src={book.bookCoverUrl.replace('&edge=curl', '').replace(/&zoom=\d/, '&zoom=0')} alt={book.bookTitle} className={styles.gridCover} />
+                ) : (
+                  <div className={styles.placeholderCover}>
+                    <span>{book.bookTitle}</span>
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
       </main>
-    </div>
+    </>
   );
 }

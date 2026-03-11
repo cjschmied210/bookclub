@@ -1,0 +1,108 @@
+.bookMain {
+  padding-bottom: 8rem;
+}
+
+.bookHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5rem;
+  border-bottom: 1px solid var(--color-surface-muted);
+  padding-bottom: 4rem;
+}
+
+.bookCover {
+  max-width: 180px;
+  height: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  margin-bottom: 2.5rem;
+  border-radius: 2px;
+}
+
+.bookTitle {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.bookAuthor {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.reflectionCount {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-sage);
+}
+
+.reflectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.reflectionEntry {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reflectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--color-surface-muted);
+  padding-bottom: 0.5rem;
+}
+
+.memberTag {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-sage);
+}
+
+.dateTag {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reflectionContent {
+  font-size: 1.15rem;
+  line-height: var(--leading);
+}
+
+.reflectionContent p {
+  margin-bottom: 1.5rem;
+}
+
+.reflectionContent blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-text-muted);
+  border-left: 2px solid var(--color-sage);
+  padding-left: 2rem;
+  margin: 2.5rem 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px dotted var(--color-surface-muted);
+  margin-top: 1rem;
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+}
