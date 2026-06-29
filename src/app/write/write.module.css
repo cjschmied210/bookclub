@@ -1,0 +1,167 @@
+.writeMain {
+  padding-bottom: 8rem;
+}
+
+.writeHeader {
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--color-surface-muted);
+  padding-bottom: 2rem;
+}
+
+.writeHeader h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.writeHeader p {
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.editorGrid {
+  display: grid;
+  gap: 4rem;
+}
+
+.lookupSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.inputField {
+  background: transparent;
+  border: 1px solid var(--color-surface-muted);
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--foreground);
+  width: 100%;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: var(--color-sage);
+}
+
+.lookupControls {
+  display: flex;
+  gap: 1rem;
+}
+
+.lookupButton {
+  background: var(--color-surface-muted);
+  border: none;
+  padding: 0 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--foreground);
+  transition: background 0.2s ease;
+}
+
+.lookupButton:hover {
+  background: var(--color-sage);
+  color: var(--color-cream);
+}
+
+.bookCard {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--color-surface-muted);
+}
+
+.bookCover {
+  width: 80px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.bookInfo h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.bookInfo span {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.editorSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.textareaField {
+  background: transparent;
+  border: 1px solid var(--color-surface-muted);
+  padding: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: var(--leading);
+  color: var(--foreground);
+  width: 100%;
+  min-height: 400px;
+  resize: vertical;
+}
+
+.textareaField:focus {
+  outline: none;
+  border-color: var(--color-sage);
+}
+
+.actionRow {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.publishButton {
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.publishButton:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.publishButton:disabled {
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: dark) {
+  .publishButton:not(:disabled) {
+    background: var(--color-text-muted);
+  }
+}

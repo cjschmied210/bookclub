@@ -1,0 +1,51 @@
+.archiveList {
+  padding-bottom: 6rem;
+}
+
+.bookGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3vw;
+  padding: 2rem 0;
+  width: 50vw;
+  min-width: 340px;
+  margin: 0 auto;
+}
+
+.bookCoverLink {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: block;
+  width: calc(33.333% - 2vw);
+  min-width: 160px;
+  max-width: 250px;
+}
+
+.bookCoverLink:hover {
+  transform: translateY(-6px);
+  opacity: 0.9;
+}
+
+.gridCover {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+
+.placeholderCover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: var(--color-surface-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}

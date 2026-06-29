@@ -1,0 +1,26 @@
+.reflectionMain {
+  padding-bottom: 8rem;
+}
+
+.postHeader {
+  margin-bottom: 4rem;
+}
+
+.postBody {
+  font-size: 1.15rem;
+}
+
+.postBody p {
+  margin-bottom: 1.75rem;
+}
+
+.postBody blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  border-left: 2px solid var(--color-sage);
+  padding-left: 2rem;
+  margin: 3rem 0;
+  line-height: var(--leading);
+}
